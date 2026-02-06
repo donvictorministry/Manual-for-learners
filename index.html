@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GitHub Pages Guide - Complete Tutorial</title>
+    
+    <!-- Open Graph Meta Tags for Beautiful Link Previews -->
+    <meta property="og:title" content="GitHub Pages Guide - Complete Tutorial for Beginners">
+    <meta property="og:description" content="Step-by-step guide to publishing single-file HTML apps on GitHub Pages. Perfect for Google App Script users learning GitHub!">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://raw.githubusercontent.com/yourusername/yourrepo/main/preview-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://yourusername.github.io/yourrepo/">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GitHub Pages Guide - Complete Tutorial for Beginners">
+    <meta name="twitter:description" content="Step-by-step guide to publishing single-file HTML apps on GitHub Pages. Perfect for Google App Script users learning GitHub!">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/yourusername/yourrepo/main/preview-image.png">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="description" content="Complete step-by-step guide for publishing single-file HTML applications on GitHub Pages. Includes troubleshooting, examples, and best practices.">
+    <meta name="keywords" content="GitHub Pages, HTML tutorial, web hosting, single file app, beginner guide, GitHub tutorial">
+    <meta name="author" content="Your Name">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #5A67D8;
+            --secondary-color: #4C51BF;
+            --accent-color: #667EEA;
+            --bg-light: #F7FAFC;
+            --bg-white: #FFFFFF;
+            --text-dark: #2D3748;
+            --text-medium: #4A5568;
+            --text-light: #718096;
+            --border-color: #E2E8F0;
+            --success-bg: #C6F6D5;
+            --success-border: #38A169;
+            --warning-bg: #FEF5E7;
+            --warning-border: #F59E0B;
+            --error-bg: #FED7D7;
+            --error-border: #E53E3E;
+            --info-bg: #E6FFFA;
+            --info-border: #319795;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            padding: 0;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 100vw;
+            margin: 0;
+            background: var(--bg-white);
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 1.5em;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        
+        header p {
+            font-size: 0.9em;
+            opacity: 0.95;
+            margin: 4px 0;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 15px;
+            flex-wrap: nowrap;
+        }
+        
+        .contact-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.3em;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .contact-btn:active {
+            transform: scale(0.95);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .content {
+            padding: 15px;
+        }
+        
+        .toc {
+            background: var(--bg-light);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        
+        .toc h2 {
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            font-size: 1.3em;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .toc li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .toc li:last-child {
+            border-bottom: none;
+        }
+        
+        .toc a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.2s;
+        }
+        
+        .toc a:active {
+            background: var(--accent-color);
+            color: white;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            scroll-margin-top: 80px;
+        }
+        
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 1.5em;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid var(--accent-color);
+        }
+        
+        .section h3 {
+            color: var(--secondary-color);
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+        
+        .step {
+            background: var(--bg-light);
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 8px;
+            border-left: 5px solid var(--accent-color);
+        }
+        
+        .step-number {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 8px;
+            font-size: 0.9em;
+        }
+        
+        .important {
+            background: var(--warning-bg);
+            border-left: 5px solid var(--warning-border);
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 5px;
+            font-size: 0.95em;
+        }
+        
+        .important::before {
+            content: "\26A0\FE0F IMPORTANT: ";
+            font-weight: bold;
+            color: #B45309;
+        }
+        
+        .success {
+            background: var(--success-bg);
+            border-left: 5px solid var(--success-border);
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 5px;
+            font-size: 0.95em;
+        }
+        
+        .success::before {
+            content: "\2714\FE0F ";
+            font-weight: bold;
+            color: var(--success-border);
+        }
+        
+        .error {
+            background: var(--error-bg);
+            border-left: 5px solid var(--error-border);
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 5px;
+            font-size: 0.95em;
+        }
+        
+        .error::before {
+            content: "\274C ";
+            font-weight: bold;
+            color: var(--error-border);
+        }
+        
+        .tips {
+            background: var(--info-bg);
+            border-left: 5px solid var(--info-border);
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 5px;
+            font-size: 0.95em;
+        }
+        
+        .tips::before {
+            content: "\1F4A1 TIP: ";
+            font-weight: bold;
+            color: #0C5460;
+        }
+        
+        code {
+            background: #F7FAFC;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #D63384;
+            font-size: 0.85em;
+            word-break: break-all;
+        }
+        
+        pre {
+            background: #2D3748;
+            color: #F7FAFC;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 12px 0;
+            border-left: 5px solid var(--accent-color);
+            font-size: 0.85em;
+        }
+        
+        pre code {
+            background: transparent;
+            color: #F7FAFC;
+            padding: 0;
+            word-break: normal;
+        }
+        
+        .code-label {
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 5px 5px 0 0;
+            font-size: 0.85em;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: -5px;
+        }
+        
+        .copy-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 8px;
+            width: 100%;
+            font-weight: 600;
+        }
+        
+        .copy-btn:active {
+            background: var(--secondary-color);
+            transform: scale(0.98);
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+        
+        li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .checklist li::before {
+            content: "\2610 ";
+            font-size: 1.2em;
+            margin-right: 8px;
+            color: var(--accent-color);
+        }
+        
+        footer {
+            background: var(--bg-light);
+            padding: 20px 15px;
+            text-align: center;
+            color: var(--text-medium);
+            border-top: 3px solid var(--accent-color);
+            font-size: 0.9em;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            text-decoration: none;
+            font-size: 1.5em;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            display: none;
+            z-index: 999;
+        }
+        
+        .back-to-top:active {
+            background: var(--secondary-color);
+            transform: scale(0.95);
+        }
+        
+        .screenshot-placeholder {
+            background: var(--bg-light);
+            border: 2px dashed var(--accent-color);
+            padding: 30px 15px;
+            text-align: center;
+            margin: 12px 0;
+            border-radius: 8px;
+            color: var(--text-medium);
+            font-style: italic;
+            font-size: 0.9em;
+        }
+        
+        p {
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+        
+        strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 id="site-title">GitHub Pages Complete Guide</h1>
+            <p id="site-subtitle">Step-by-Step Reference for Publishing Apps</p>
+            <p id="site-tagline">For Google App Script Users Learning GitHub</p>
+            
+            <div class="contact-buttons">
+                <a href="tel:+1234567890" class="contact-btn" id="phone-btn" title="Call Me">&#9742;</a>
+                <a href="mailto:your.email@example.com" class="contact-btn" id="email-btn" title="Email Me">&#9993;</a>
+                <a href="https://facebook.com/yourprofile" class="contact-btn" id="facebook-btn" target="_blank" title="Facebook">&#402;</a>
+                <a href="https://wa.me/1234567890" class="contact-btn" id="whatsapp-btn" target="_blank" title="WhatsApp">&#9990;</a>
+            </div>
+        </header>
+
+        <div class="content">
+            <!-- Table of Contents -->
+            <div class="toc">
+                <h2>&#128221; Table of Contents</h2>
+                <ul>
+                    <li><a href="#intro">What is GitHub Pages?</a></li>
+                    <li><a href="#setup">Setting Up Your Account</a></li>
+                    <li><a href="#first-project">Creating Your First Project</a></li>
+                    <li><a href="#publishing">Publishing Your HTML File</a></li>
+                    <li><a href="#nojekyll">Understanding .nojekyll File</a></li>
+                    <li><a href="#updating">Updating Your Project</a></li>
+                    <li><a href="#challenges">Common Challenges</a></li>
+                    <li><a href="#best-practices">Best Practices</a></li>
+                    <li><a href="#examples">Practice Examples</a></li>
+                    <li><a href="#checklist">Quick Reference Checklist</a></li>
+                </ul>
+            </div>
+
+            <!-- Introduction Section -->
+            <div id="intro" class="section">
+                <h2>What is GitHub Pages?</h2>
+                <p>GitHub Pages is a FREE website hosting service from GitHub. It turns your code files into live websites that anyone can visit on the internet.</p>
+                
+                <h3>Think of it like this:</h3>
+                <ul>
+                    <li><strong>Google App Script:</strong> Your code runs on Google's servers</li>
+                    <li><strong>GitHub Pages:</strong> Your HTML file becomes a live website on GitHub's servers</li>
+                </ul>
+
+                <div class="success">
+                    Perfect for single-file HTML apps! Your entire project (HTML, CSS, JavaScript) in ONE file.
+                </div>
+
+                <h3>What You Can Do:</h3>
+                <ul>
+                    <li>Publish calculators, games, tools</li>
+                    <li>Share portfolio projects</li>
+                    <li>Host documentation</li>
+                    <li>Create landing pages</li>
+                </ul>
+
+                <h3>What You Cannot Do:</h3>
+                <ul>
+                    <li>Run server-side code (PHP, Python servers, etc.)</li>
+                    <li>Store user data permanently (no database)</li>
+                    <li>Upload files larger than 100MB</li>
+                </ul>
+            </div>
+
+            <!-- Setup Section -->
+            <div id="setup" class="section">
+                <h2>Setting Up Your GitHub Account</h2>
+
+                <div class="step">
+                    <h3><span class="step-number">1</span> Create Your Account</h3>
+                    <ol>
+                        <li>Go to <code>https://github.com</code></li>
+                        <li>Click the <strong>"Sign up"</strong> button (top right)</li>
+                        <li>Enter your email address</li>
+                        <li>Create a password (use something secure!)</li>
+                        <li>Choose a username (this will be in your website URL)</li>
+                        <li>Complete the verification puzzle</li>
+                        <li>Click <strong>"Create account"</strong></li>
+                    </ol>
+                </div>
+
+                <div class="important">
+                    Your username becomes part of your website URL: <code>https://username.github.io</code>
+                </div>
+
+                <div class="step">
+                    <h3><span class="step-number">2</span> Verify Your Email</h3>
+                    <ol>
+                        <li>Check your email inbox</li>
+                        <li>Find the email from GitHub</li>
+                        <li>Click the verification link</li>
+                        <li>You're ready to start!</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- First Project Section -->
+            <div id="first-project" class="section">
+                <h2>Creating Your First Project (Repository)</h2>
+
+                <p>A <strong>repository</strong> (or "repo") is like a project folder. Each website needs its own repository.</p>
+
+                <div class="step">
+                    <h3><span class="step-number">1</span> Create New Repository</h3>
+                    <ol>
+                        <li>Log into GitHub</li>
+                        <li>Click the <strong>green "New"</strong> button (top left corner)</li>
+                        <li>Or click your profile picture &rarr; "Your repositories" &rarr; "New"</li>
+                    </ol>
+                    <div class="screenshot-placeholder">
+                        Look for the green "New" button near the top left of the page
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3><span class="step-number">2</span> Fill Out Repository Details</h3>
+                    <ol>
+                        <li><strong>Repository name:</strong> Choose a name (e.g., <code>my-calculator</code>)</li>
+                        <li><strong>Description:</strong> Optional, but helpful (e.g., "Simple calculator app")</li>
+                        <li><strong>Public/Private:</strong> Choose <strong>Public</strong> (required for free GitHub Pages)</li>
+                        <li><strong>Check:</strong> "Add a README file"</li>
+                        <li>Click the green <strong>"Create repository"</strong> button</li>
+                    </ol>
+                </div>
+
+                <div class="tips">
+                    Repository names become part of your URL: <code>https://username.github.io/repository-name</code>
+                </div>
+
+                <div class="important">
+                    Use lowercase letters and hyphens only in repository names. No spaces or special characters!
+                </div>
+            </div>
+
+            <!-- Publishing Section -->
+            <div id="publishing" class="section">
+                <h2>Publishing Your HTML File</h2>
+
+                <div class="step">
+                    <h3><span class="step-number">1</span> Add Your HTML File</h3>
+                    <ol>
+                        <li>Inside your repository, click <strong>"Add file"</strong> button</li>
+                        <li>Select <strong>"Create new file"</strong></li>
+                        <li>Name your file: <code>index.html</code></li>
+                        <li><strong>Copy and paste your entire HTML code</strong> into the editor</li>
+                        <li>Scroll to bottom</li>
+                        <li>Click green <strong>"Commit new file"</strong> button</li>
+                    </ol>
+                </div>
+
+                <div class="important">
+                    The file MUST be named <code>index.html</code> (all lowercase) for GitHub Pages to work automatically!
+                </div>
+
+                <div class="step">
+                    <h3><span class="step-number">2</span> Enable GitHub Pages</h3>
+                    <ol>
+                        <li>Click the <strong>"Settings"</strong> tab (top of your repository)</li>
+                        <li>Look at the left sidebar</li>
+                        <li>Scroll down and click <strong>"Pages"</strong></li>
+                        <li>Under "Source" (or "Branch"), select <strong>"main"</strong> from the dropdown</li>
+                        <li>Click <strong>"Save"</strong></li>
+                        <li>Wait 1-2 minutes</li>
+                        <li>Refresh the page</li>
+                        <li>You'll see a blue/green box with your website link!</li>
+                    </ol>
+                </div>
+
+                <div class="success">
+                    Your website URL will be: <code>https://yourusername.github.io/repository-name</code>
+                </div>
+
+                <div class="step">
+                    <h3><span class="step-number">3</span> Visit Your Live Website!</h3>
+                    <p>Click the link provided or type it into your browser. Your app is now live on the internet!</p>
+                </div>
+            </div>
+
+            <!-- .nojekyll Section -->
+            <div id="nojekyll" class="section">
+                <h2>Understanding the .nojekyll File</h2>
+
+                <h3>What is Jekyll?</h3>
+                <p>Jekyll is a tool GitHub uses automatically to process your files. It was designed for blogs and documentation sites.</p>
+
+                <h3>The Problem:</h3>
+                <p>Jekyll can "break" or hide some of your files, especially:</p>
+                <ul>
+                    <li>Files or folders starting with underscore (_myfile.js)</li>
+                    <li>Certain JavaScript frameworks</li>
+                    <li>Files with special characters</li>
+                </ul>
+
+                <div class="error">
+                    If your JavaScript or CSS mysteriously stops working after publishing, Jekyll might be interfering!
+                </div>
+
+                <h3>The Solution: .nojekyll File</h3>
+                <p>This tiny file tells GitHub: <strong>"Don't process my files, just publish them exactly as they are!"</strong></p>
+
+                <div class="step">
+                    <h3><span class="step-number">1</span> When to Add .nojekyll</h3>
+                    <p>Add this file if:</p>
+                    <ul>
+                        <li>Your JavaScript/CSS works locally but breaks on GitHub Pages</li>
+                        <li>You're using files/folders with underscores</li>
+                        <li>You want to prevent any processing (safer choice)</li>
+                    </ul>
+                </div>
+
+                <div class="step">
+                    <h3><span class="step-number">2</span> How to Create .nojekyll</h3>
+                    <ol>
+                        <li>In your repository, click <strong>"Add file"</strong></li>
+                        <li>Click <strong>"Create new file"</strong></li>
+                        <li>Type the filename: <code>.nojekyll</code> (yes, it starts with a dot!)</li>
+                        <li>Leave the file completely empty (no text needed!)</li>
+                        <li>Scroll down and click <strong>"Commit new file"</strong></li>
+                    </ol>
+                </div>
+
+                <div class="tips">
+                    For simple single-file HTML apps, you usually DON'T need .nojekyll. Only add it if you encounter problems!
+                </div>
+
+                <div class="success">
+                    After adding .nojekyll, your files will be published exactly as you wrote them, with no modifications.
+                </div>
+            </div>
+
+            <!-- Updating Section -->
+            <div id="updating" class="section">
+                <h2>Updating Your Project (Copy-Paste Method)</h2>
+
+                <p>This is the easiest way to update your website - just like you do in App Script!</p>
+
+                <div class="step">
+                    <h3><span class="step-number">1</span> Edit Your HTML File</h3>
+                    <ol>
+                        <li>Go to your repository</li>
+                        <li>Click on <code>index.html</code></li>
+                        <li>Click the <strong>pencil icon</strong> (top right, says "Edit this file")</li>
+                        <li>Select all the old code (long press and select all)</li>
+                        <li>Delete it</li>
+                        <li>Paste your new code</li>
+                    </ol>
+                </div>
+
+                <div class="step">
+                    <h3><span class="step-number">2</span> Save Your Changes</h3>
+                    <ol>
+                        <li>Scroll to the bottom</li>
+                        <li>In "Commit changes" box, you can add a note (optional)</li>
+                        <li>Click green <strong>"Commit changes"</strong> button</li>
+                    </ol>
+                </div>
+
+                <div class="step">
+                    <h3><span class="step-number">3</span> Wait for Update</h3>
+                    <ol>
+                        <li>Wait 1-2 minutes for GitHub to rebuild your site</li>
+                        <li>Check the "Actions" tab to see progress (optional)</li>
+                        <li>Visit your website and refresh</li>
+                    </ol>
+                </div>
+
+                <div class="tips">
+                    If you don't see changes, clear your browser cache or try opening in private/incognito mode
+                </div>
+            </div>
+
+            <!-- Challenges Section -->
+            <div id="challenges" class="section">
+                <h2>Common Challenges & Solutions</h2>
+
+                <h3>Challenge 1: "404 - Page Not Found"</h3>
+                <div class="error">
+                    Your website shows a 404 error when you visit it.
+                </div>
+                <p><strong>Solutions:</strong></p>
+                <ul>
+                    <li>Make sure your file is named exactly <code>index.html</code> (lowercase)</li>
+                    <li>Wait 5 minutes after enabling Pages - it takes time!</li>
+                    <li>Check Settings &rarr; Pages - make sure it says "Your site is live at..."</li>
+                    <li>Make sure your repository is Public, not Private</li>
+                </ul>
+
+                <h3>Challenge 2: "My site shows old version"</h3>
+                <div class="error">
+                    You updated your code but the website still shows the old version.
+                </div>
+                <p><strong>Solutions:</strong></p>
+                <ul>
+                    <li>Wait 2-5 minutes for GitHub to rebuild</li>
+                    <li>Check "Actions" tab for green checkmark (means deployment finished)</li>
+                    <li>Try opening in incognito/private window</li>
+                    <li>Clear all browser cache and cookies</li>
+                </ul>
+
+                <h3>Challenge 3: "CSS/JavaScript not working"</h3>
+                <div class="error">
+                    Your styling or scripts work locally but not on GitHub Pages.
+                </div>
+                <p><strong>Solutions:</strong></p>
+                <ul>
+                    <li>Make sure everything is in ONE file (index.html)</li>
+                    <li>Check for file path errors (no external file links)</li>
+                    <li>Add <code>.nojekyll</code> file to your repository</li>
+                    <li>Open browser console to see error messages</li>
+                    <li>Make sure you're using <code>&lt;style&gt;</code> tags for CSS and <code>&lt;script&gt;</code> tags for JavaScript</li>
+                </ul>
+
+                <h3>Challenge 4: "100% HTML warning"</h3>
+                <div class="success">
+                    This is NOT an error! GitHub is just showing what type of code your project contains.
+                </div>
+                <p><strong>What it means:</strong></p>
+                <ul>
+                    <li>100% HTML = Your project is pure HTML (perfectly fine!)</li>
+                    <li>It's just a label showing code composition</li>
+                    <li>Single-file apps are usually 100% HTML</li>
+                    <li>You can completely ignore this</li>
+                </ul>
+
+                <h3>Challenge 5: "Images not showing"</h3>
+                <div class="error">
+                    Your images work locally but disappear on GitHub Pages.
+                </div>
+                <p><strong>Solutions:</strong></p>
+                <ul>
+                    <li>Use full URLs for images: <code>https://example.com/image.jpg</code></li>
+                    <li>Or use Base64 encoded images directly in HTML</li>
+                    <li>Upload images to repository and use relative paths: <code>./image.jpg</code></li>
+                    <li>Use image hosting services (Imgur, Cloudinary, etc.)</li>
+                </ul>
+
+                <h3>Challenge 6: "Can't find the Settings tab"</h3>
+                <div class="error">
+                    You don't see a Settings tab in your repository.
+                </div>
+                <p><strong>Solutions:</strong></p>
+                <ul>
+                    <li>Make sure you're in YOUR repository, not someone else's</li>
+                    <li>Settings tab is at the top, usually the last tab on the right</li>
+                    <li>You must be the repository owner to see Settings</li>
+                </ul>
+
+                <h3>Challenge 7: "My code has errors"</h3>
+                <div class="error">
+                    Your HTML/CSS/JavaScript has bugs and won't work properly.
+                </div>
+                <p><strong>Solutions:</strong></p>
+                <ul>
+                    <li>Test your code locally first (open HTML file in browser)</li>
+                    <li>Use browser console to see error messages</li>
+                    <li>Check for missing closing tags: <code>&lt;/div&gt;</code>, <code>&lt;/script&gt;</code>, etc.</li>
+                    <li>Validate HTML at: <code>https://validator.w3.org/</code></li>
+                    <li>Check for typos in function names</li>
+                </ul>
+            </div>
+
+            <!-- Best Practices Section -->
+            <div id="best-practices" class="section">
+                <h2>Best Practices for Single-File Apps</h2>
+
+                <h3>1. File Organization</h3>
+                <div class="code-label">Recommended Structure</div>
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Your App Name&lt;/title&gt;
+    
+    &lt;!-- All your CSS here --&gt;
+    &lt;style&gt;
+        /* Your styles */
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Your HTML content here --&gt;
+    
+    &lt;!-- All your JavaScript at the end --&gt;
+    &lt;script&gt;
+        // Your code
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                <h3>2. Keep It Simple</h3>
+                <ul>
+                    <li>One file is easier to manage</li>
+                    <li>No need for separate CSS/JS files for small projects</li>
+                    <li>Easier to copy-paste and update</li>
+                </ul>
+
+                <h3>3. Test Before Publishing</h3>
+                <ul>
+                    <li>Save your HTML file on your phone</li>
+                    <li>Open it in a browser</li>
+                    <li>Make sure everything works</li>
+                    <li>Then upload to GitHub</li>
+                </ul>
+
+                <h3>4. Use Meaningful Names</h3>
+                <ul>
+                    <li>Repository: <code>tax-calculator</code> (not <code>project1</code>)</li>
+                    <li>Main file: Always <code>index.html</code></li>
+                    <li>Commit messages: "Fixed calculator bug" (not "update")</li>
+                </ul>
+
+                <h3>5. Comment Your Code</h3>
+                <div class="code-label">Good Practice</div>
+                <pre><code>&lt;!-- Calculator Display --&gt;
+&lt;div id="display"&gt;0&lt;/div&gt;
+
+&lt;script&gt;
+    // Function to add two numbers
+    function add(a, b) {
+        return a + b;
+    }
+&lt;/script&gt;</code></pre>
+
+                <h3>6. Always Include Viewport Meta Tag</h3>
+                <div class="code-label">Essential for Mobile</div>
+                <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+
+                <h3>7. Use External Libraries via CDN</h3>
+                <p>Instead of downloading libraries, link to them:</p>
+                <div class="code-label">Example</div>
+                <pre><code>&lt;!-- For charts --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;
+
+&lt;!-- For styling --&gt;
+&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;</code></pre>
+            </div>
+
+            <!-- Examples Section -->
+            <div id="examples" class="section">
+                <h2>Practice Examples</h2>
+
+                <h3>Example 1: Simple Counter App</h3>
+                <div class="code-label">Copy this entire code</div>
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Counter App&lt;/title&gt;
+    &lt;style&gt;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #5A67D8, #4C51BF);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 400px;
+            margin: 50px auto;
+        }
+        #count {
+            font-size: 60px;
+            color: #5A67D8;
+            margin: 20px 0;
+        }
+        button {
+            padding: 15px 25px;
+            font-size: 18px;
+            margin: 8px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background: #5A67D8;
+            color: white;
+            width: 80px;
+        }
+        button:active { background: #4C51BF; transform: scale(0.95); }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;Counter App&lt;/h1&gt;
+        &lt;div id="count"&gt;0&lt;/div&gt;
+        &lt;button onclick="decrease()"&gt;-&lt;/button&gt;
+        &lt;button onclick="reset()"&gt;Reset&lt;/button&gt;
+        &lt;button onclick="increase()"&gt;+&lt;/button&gt;
+    &lt;/div&gt;
+    
+    &lt;script&gt;
+        let count = 0;
+        function increase() { count++; updateDisplay(); }
+        function decrease() { count--; updateDisplay(); }
+        function reset() { count = 0; updateDisplay(); }
+        function updateDisplay() {
+            document.getElementById('count').innerText = count;
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                <h3>Example 2: Simple To-Do List</h3>
+                <div class="code-label">Copy this entire code</div>
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;To-Do List&lt;/title&gt;
+    &lt;style&gt;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial;
+            background: #F7FAFC;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        h1 { color: #5A67D8; margin-bottom: 15px; }
+        input {
+            width: 70%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #E2E8F0;
+            border-radius: 5px;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            background: #5A67D8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:active { background: #4C51BF; }
+        ul { list-style: none; margin-top: 15px; }
+        li {
+            padding: 12px;
+            background: #F7FAFC;
+            margin: 8px 0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        li:active { background: #E2E8F0; }
+        .completed {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;My To-Do List&lt;/h1&gt;
+        &lt;input type="text" id="taskInput" placeholder="Enter a task..."&gt;
+        &lt;button onclick="addTask()"&gt;Add&lt;/button&gt;
+        &lt;ul id="taskList"&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+    
+    &lt;script&gt;
+        function addTask() {
+            const input = document.getElementById('taskInput');
+            const task = input.value.trim();
+            if (task === '') { alert('Please enter a task!'); return; }
+            const li = document.createElement('li');
+            li.textContent = task;
+            li.onclick = function() { this.classList.toggle('completed'); };
+            document.getElementById('taskList').appendChild(li);
+            input.value = '';
+        }
+        document.getElementById('taskInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') addTask();
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                <div class="tips">
+                    Try these examples! Create a new repository for each one and see them live on GitHub Pages.
+                </div>
+            </div>
+
+            <!-- Checklist Section -->
+            <div id="checklist" class="section">
+                <h2>Quick Reference Checklist</h2>
+
+                <h3>Publishing a New Project:</h3>
+                <ul class="checklist">
+                    <li>Create GitHub account (if needed)</li>
+                    <li>Click "New" repository button</li>
+                    <li>Name your repository (lowercase, hyphens only)</li>
+                    <li>Make it Public</li>
+                    <li>Check "Add README file"</li>
+                    <li>Create repository</li>
+                    <li>Add file &rarr; Create new file</li>
+                    <li>Name it <code>index.html</code></li>
+                    <li>Paste your HTML code</li>
+                    <li>Commit new file</li>
+                    <li>Go to Settings &rarr; Pages</li>
+                    <li>Select "main" branch</li>
+                    <li>Click Save</li>
+                    <li>Wait 2-5 minutes</li>
+                    <li>Visit your website URL!</li>
+                </ul>
+
+                <h3>Updating Your Project:</h3>
+                <ul class="checklist">
+                    <li>Go to your repository</li>
+                    <li>Click on <code>index.html</code></li>
+                    <li>Click pencil icon</li>
+                    <li>Select all</li>
+                    <li>Paste new code</li>
+                    <li>Commit changes</li>
+                    <li>Wait 1-2 minutes</li>
+                    <li>Refresh your browser</li>
+                </ul>
+
+                <h3>Troubleshooting Checklist:</h3>
+                <ul class="checklist">
+                    <li>File named <code>index.html</code> exactly?</li>
+                    <li>Repository is Public?</li>
+                    <li>Pages enabled in Settings?</li>
+                    <li>Waited 5 minutes?</li>
+                    <li>Refreshed browser?</li>
+                    <li>Checked Actions tab for errors?</li>
+                    <li>Tried incognito mode?</li>
+                    <li>Added <code>.nojekyll</code> if needed?</li>
+                </ul>
+
+                <h3>Key URLs to Remember:</h3>
+                <ul>
+                    <li><strong>GitHub:</strong> <code>https://github.com</code></li>
+                    <li><strong>Your Profile:</strong> <code>https://github.com/yourusername</code></li>
+                    <li><strong>Your Website:</strong> <code>https://yourusername.github.io/repo-name</code></li>
+                </ul>
+            </div>
+
+            <!-- Final Tips -->
+            <div class="section">
+                <h2>Final Tips for Success</h2>
+
+                <div class="success">
+                    <strong>Start Simple:</strong> Your first project should be simple. Don't try to build something complex right away.
+                </div>
+
+                <div class="tips">
+                    Save this HTML file on your phone! You can open it anytime in your browser to reference these instructions.
+                </div>
+
+                <div class="important">
+                    Practice makes perfect! Create 2-3 test projects to get comfortable with the process before publishing your real work.
+                </div>
+
+                <h3>Learning Path:</h3>
+                <ol>
+                    <li>Create account and first repository (today!)</li>
+                    <li>Publish one of the example projects above</li>
+                    <li>Make a simple project of your own</li>
+                    <li>Practice updating it several times</li>
+                    <li>Try more complex projects</li>
+                    <li>Share your projects with others!</li>
+                </ol>
+
+                <h3>Resources:</h3>
+                <ul>
+                    <li><strong>GitHub Pages Docs:</strong> <code>https://pages.github.com</code></li>
+                    <li><strong>GitHub Help:</strong> <code>https://docs.github.com</code></li>
+                    <li><strong>HTML Validator:</strong> <code>https://validator.w3.org</code></li>
+                    <li><strong>Free Code Resources:</strong> <code>https://www.freecodecamp.org</code></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <footer>
+            <p><strong>Remember:</strong> GitHub Pages is FREE forever for public repositories!</p>
+            <p style="margin-top: 10px;">Happy Coding | Powered by God's Grace</p>
+            <p style="margin-top: 15px; font-size: 0.9em;">Curated by Rev. Don  Victor, PhD.</p>
+        </footer>
+    </div>
+
+    <a href="#" class="back-to-top" id="backToTop">&uarr;</a>
+
+    <script>
+        // ========================================
+        // SITE CONFIGURATION
+        // ========================================
+        // UPDATE THESE VALUES WITH YOUR INFORMATION
+        // ========================================
+        
+        const SITE_CONFIG = {
+            // Site Information
+            title: "GitHub Pages Complete Guide",
+            subtitle: "Step-by-Step Reference for Publishing Apps",
+            tagline: "For Google App Script Users Learning GitHub",
+            
+            // Contact Information - UPDATE WITH YOUR DETAILS
+            contact: {
+                phone: "+2347035794649",           // Your phone number
+                email: "donvictorministry@gmail.com", // Your email
+                facebook: "https://facebook.com/Rev.DonVictor",  // Your Facebook profile
+                whatsapp: "+2348086590253",     // Your WhatsApp number (no + or spaces)
+            },
+            
+            // Brand Colors - CUSTOMIZE YOUR COLORS
+            colors: {
+                primary: "#1877F2",  // Main color
+                secondary: "#4C51BF",  // Secondary color
+                accent: "#667EEA"      // Accent color
+            }
+        };
+
+        // ========================================
+        // AUTO-APPLY CONFIGURATION
+        // ========================================
+        
+        // Apply site information
+        document.getElementById('site-title').textContent = SITE_CONFIG.title;
+        document.getElementById('site-subtitle').textContent = SITE_CONFIG.subtitle;
+        document.getElementById('site-tagline').textContent = SITE_CONFIG.tagline;
+        
+        // Apply contact information
+        document.getElementById('phone-btn').href = 'tel:' + SITE_CONFIG.contact.phone;
+        document.getElementById('email-btn').href = 'mailto:' + SITE_CONFIG.contact.email;
+        document.getElementById('facebook-btn').href = SITE_CONFIG.contact.facebook;
+        document.getElementById('whatsapp-btn').href = 'https://wa.me/' + SITE_CONFIG.contact.whatsapp;
+        
+        // Apply brand colors
+        document.documentElement.style.setProperty('--primary-color', SITE_CONFIG.colors.primary);
+        document.documentElement.style.setProperty('--secondary-color', SITE_CONFIG.colors.secondary);
+        document.documentElement.style.setProperty('--accent-color', SITE_CONFIG.colors.accent);
+
+        // ========================================
+        // FUNCTIONALITY
+        // ========================================
+
+        // Back to top button
+        window.onscroll = function() {
+            const btn = document.getElementById('backToTop');
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                btn.style.display = 'block';
+            } else {
+                btn.style.display = 'none';
+            }
+        };
+
+        document.getElementById('backToTop').onclick = function(e) {
+            e.preventDefault();
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        };
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Copy code button functionality
+        document.querySelectorAll('pre').forEach(pre => {
+            const button = document.createElement('button');
+            button.className = 'copy-btn';
+            button.textContent = 'Copy Code';
+            button.onclick = function() {
+                const code = pre.querySelector('code').textContent;
+                navigator.clipboard.writeText(code).then(() => {
+                    button.textContent = 'Copied!';
+                    setTimeout(() => {
+                        button.textContent = 'Copy Code';
+                    }, 2000);
+                }).catch(() => {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = code;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    button.textContent = 'Copied!';
+                    setTimeout(() => {
+                        button.textContent = 'Copy Code';
+                    }, 2000);
+                });
+            };
+            pre.appendChild(button);
+        });
+    </script>
+</body>
+</html>
